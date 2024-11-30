@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies List</title>
+<link rel="stylesheet" href="/path/to/node_modules/bootstrap/dist/css/bootstrap.min.css"></head>
+<body>
+    <h1>Movies List</h1>
+    <ul>
+        {{#each movies}}
+            <li>
+                <img src="{{this.image}}" alt="{{this.title}}">
+                <h2>{{this.title}}</h2>
+                <a href="/movies/{{this._id}}">See More</a>
+            </li>
+        {{/each}}
+    </ul>
+</body>
+</html>

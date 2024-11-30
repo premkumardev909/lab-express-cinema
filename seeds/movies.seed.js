@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+const Movie = require('../models/Movie.model');
+
 const movies = [
     {
       title: "A Wrinkle in Time",
@@ -81,9 +84,18 @@ const movies = [
     }
   ];
 
-
-// Add here the script that will be run to actually seed the database (feel free to refer to the previous lesson)
-
-  
-
-// ... your code here
+  mongoose.connect('mongodb://localhost/cinema', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+      return Movie.deleteMany(); 
+  })
+  .then(() => {
+      return Movie.insertMany(movies); 
+  })
+  .then(() => {
+      console.log("Database seeded!");
+      mongoose.connection.close();
+  })
+  .catch(err => {
+      console.error(err);
+      mongoose.connection.close();
+  });
